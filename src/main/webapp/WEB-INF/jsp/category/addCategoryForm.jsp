@@ -7,6 +7,8 @@
 <form:form modelAttribute="category">
 
     Name: <form:input path="name"/><br/>
+    <form:errors path="name"/><br/>
+
     Description: <form:textarea path="description"/><br/>
     <input type="submit" value="ADD CATEGORY"><br/>
 

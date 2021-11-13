@@ -2,6 +2,7 @@ package pl.coderslab.springcms.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,9 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Podaj imie")
     private String firstName;
+    @NotEmpty(message = "Podaj nazwisko")
     private String lastName;
 /*    @OneToMany(mappedBy = "author")
     private List<Article> articles;*/

@@ -3,6 +3,7 @@ package pl.coderslab.springcms.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springcms.dao.ArticleDao;
 import pl.coderslab.springcms.dao.AuthorDao;
@@ -11,6 +12,7 @@ import pl.coderslab.springcms.entity.Article;
 import pl.coderslab.springcms.entity.Author;
 import pl.coderslab.springcms.entity.Category;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -44,7 +46,10 @@ public class ArticleController {
 
     }
     @PostMapping("/add")
-    public String saveArticle(@ModelAttribute("article") Article article){
+    public String saveArticle(@ModelAttribute("article") @Valid Article article, BindingResult result){
+       if(result.hasErrors()){
+           return "article/addArticleForm";
+       }
        articleDao.persist(article);
        return "redirect:/article/all";
     }

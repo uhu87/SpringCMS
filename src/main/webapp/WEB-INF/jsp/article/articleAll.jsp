@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
-<h2>Articles</h2>
+Articles <a href="/author/all">Authors</a> <a href="/category/all">Categories</a><br>
 <a href="add">ADD NEW ARTICLE</a><br>
 <hr>
 <c:forEach items="${articles}" var="a">

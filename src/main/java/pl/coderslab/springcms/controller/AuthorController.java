@@ -3,10 +3,13 @@ package pl.coderslab.springcms.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springcms.dao.AuthorDao;
 import pl.coderslab.springcms.entity.Author;
 import pl.coderslab.springcms.entity.Category;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/author")
@@ -34,7 +37,10 @@ public class AuthorController {
     }
 
     @PostMapping("/add")
-    public String saveCategory(@ModelAttribute("author") Author author){
+    public String saveCategory(@ModelAttribute("author") @Valid Author author, BindingResult result){
+        if(result.hasErrors()){
+            return "author/addAuthorForm";
+        }
         authorDao.persist(author);
         return "redirect:/author/all";
 

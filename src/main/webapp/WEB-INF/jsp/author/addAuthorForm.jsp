@@ -7,7 +7,10 @@
 <form:form modelAttribute="author">
 
     First Name: <form:input path="firstName"/><br/>
+    <form:errors path="firstName"/><br/>
     Last Name: <form:textarea path="lastName"/><br/>
+    <form:errors path="lastName"/><br/>
     <input type="submit" value="ADD AUTHOR"><br/>
+
 
 </form:form>

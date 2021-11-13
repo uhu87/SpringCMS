@@ -2,6 +2,8 @@ package pl.coderslab.springcms.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categories")
@@ -10,6 +12,9 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(min = 5, message = "Minimum 5 znakow")
+    @NotEmpty(message = "Podaj nazwe")
     private String name;
     private String description;
 

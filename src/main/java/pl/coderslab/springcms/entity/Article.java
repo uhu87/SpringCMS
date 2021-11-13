@@ -1,6 +1,9 @@
 package pl.coderslab.springcms.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,12 +16,21 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 200)
+    @NotEmpty
+    @Size(max=200)
     private String title;
+
     @OneToOne
     private Author author;
+
     @ManyToMany
     @JoinColumn
+    @NotEmpty
+    @Size(min = 1, message = "Wybierz minimum jedna kategorie")
     private List<Category>categories;
+
+    @NotEmpty
+    @Size(min=100,max=255)
     private String content;
     @Column(name = "created")
     private LocalDateTime created;
